@@ -72,4 +72,8 @@ export class TrainingService {
     return { ...this._runningExercise };
   }
 
+  get pastExercises() {
+    return this._exercises.slice();
+  }
+
 }
