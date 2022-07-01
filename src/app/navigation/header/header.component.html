@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <button
+    fxHide.gt-xs
+    mat-icon-button
+    class="menu-icon"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div><a class="logo" style="cursor: pointer" routerLink="/">Fitness-tracker</a></div>
+  <ul *ngIf="isLogin" fxLayout class="rightNavMenu" fxHide.xs>
+    <li><a style="cursor: pointer" routerLink="/training">Training</a></li>
+  </ul>
+
+  <span class="example-spacer"></span>
+
+  <ul fxLayout class="rightNavMenu" fxHide.xs>
+    <li *ngIf="!isLogin"><a style="cursor: pointer" routerLink="/signup">Sign Up</a></li>
+    <li *ngIf="!isLogin"><a style="cursor: pointer" routerLink="/login">Log In</a></li>
+    <li *ngIf="isLogin">
+      <a style="cursor: pointer" routerLink="/signup" (click)="handleLogout()">
+        Log Out
+      </a>
+    </li>
+  </ul>
+</mat-toolbar>
