@@ -28,8 +28,6 @@ export class SignupComponent implements OnInit {
         password: form.value.password,
       }
     );
-
-    console.log('user >>>', this._authService.user);
   }
 
 }
