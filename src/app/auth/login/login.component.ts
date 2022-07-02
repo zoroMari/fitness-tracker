@@ -20,13 +20,11 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  handleSubmit() {
+  public handleSubmit() {
     this._authService.login({
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     })
-
-    console.log('this._ >>>', this._authService.user);
   }
 
 }
