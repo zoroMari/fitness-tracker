@@ -2,10 +2,8 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { IAuthData } from "./auth-data.model";
-import { IUser } from "./user.model";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { TrainingService } from "../training/training.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { UIServise } from "../shared/ui.service";
 
 @Injectable({ providedIn: 'root' })
@@ -17,7 +15,6 @@ export class AuthService {
     private _router: Router,
     private _angularfireAuth: AngularFireAuth,
     private _trainingService: TrainingService,
-    private _snackBar: MatSnackBar,
     private _uiService: UIServise,
   ) {}
 
