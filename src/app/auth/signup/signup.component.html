@@ -61,6 +61,7 @@
     </mat-checkbox>
 
     <button
+      *ngIf="!isLoading"
       mat-raised-button
       color="primary"
       type="submit"
@@ -68,5 +69,7 @@
     >
       Sign Up
     </button>
+
+    <mat-spinner fxFle fxFlexAlign="center" *ngIf="isLoading"></mat-spinner>
   </form>
 </section>

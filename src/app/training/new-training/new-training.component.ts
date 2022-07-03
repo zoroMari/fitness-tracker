@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { UIServise } from 'src/app/shared/ui.service';
 import { IExercise } from '../exercise.model';
 import { TrainingService } from '../training.service';
 
@@ -12,26 +13,43 @@ import { TrainingService } from '../training.service';
 })
 export class NewTrainingComponent implements OnInit, OnDestroy {
   public availableExercises: IExercise[];
-  private _sub: Subscription;
+  public isLoading = false;
+  private _subExChange: Subscription;
+  private _subLoading: Subscription;
 
   constructor(
     private _trainingService: TrainingService,
+    private _uiService: UIServise,
   ) { }
 
   ngOnInit(): void {
-    this._sub = this._trainingService.exercisesChanged.subscribe(
+    this._subLoading = this._uiService.loadingStateChange.subscribe(
+      isLoading => this.isLoading = isLoading
+    )
+
+    this._subExChange = this._trainingService.exercisesChanged.subscribe(
       exercises => {
         this.availableExercises = exercises;
       }
     )
-    this._trainingService.fetchAvailableExercises();
+    this.fetchExercises();
   }
 
   handleStartTraining(form: NgForm) {
     this._trainingService.startExercise(form.value.exercise);
   }
 
+  public fetchExercises() {
+    this._trainingService.fetchAvailableExercises();
+  }
+
   ngOnDestroy(): void {
-      this._sub.unsubscribe();
+    if (this._subExChange) {
+      this._subExChange.unsubscribe();
+    }
+
+    if (this._subLoading) {
+      this._subLoading.unsubscribe();
+    }
   }
 }
