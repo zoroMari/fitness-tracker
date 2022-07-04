@@ -29,7 +29,7 @@ export class AuthService {
           this._trainingService.cancelSubscription();
           this._isAuthenticated = false;
           this.authChanged.next(false);
-          this._router.navigate(['/login']);
+          this._router.navigate(['/home']);
         }
       }
     )
