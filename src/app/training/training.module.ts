@@ -4,8 +4,8 @@ import { CurrentTrainingComponent } from "./current-training/current-training.co
 import { NewTrainingComponent } from "./new-training/new-training.component";
 import { PastTrainingComponent } from "./past-training/past-training.component";
 import { StopTrainingComponent } from "./current-training/stop-training.component";
-import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 import { SharedModule } from "../shared/shared.module";
+import { RouterModule } from "@angular/router";
 
 
 @NgModule({
@@ -18,7 +18,9 @@ import { SharedModule } from "../shared/shared.module";
   ],
   imports: [
     SharedModule,
-    AngularFirestoreModule,
+    RouterModule.forChild( [
+      { path: '', component: TrainingComponent}
+    ])
   ],
   exports: [],
 })
