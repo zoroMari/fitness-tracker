@@ -1,27 +1,38 @@
-# FitnessTracker
+# Fitness Tracker
+See demo by [this link](https://zoromari.github.io/fitness-tracker) 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+#### Functionality
 
-## Code scaffolding
+This is an interesting project that provides a tools for tracking and logging your fitness exercises.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You can start/pause and storp your selected exercise at any time and save your progress.
 
-## Build
+You can also see all your past exercises in a convenient table with sorting and filtering, as well as check your previous progress.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![new-exercise](./src/assets/new-ex.png)
+![new-exercise](./src/assets/new-ex2.png)
+![past-exercises](./src/assets/past-ex.png)
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<br>
 
-## Running end-to-end tests
+#### Technologies:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+This project was generated with **Angular**.
+For this project, I used the **Material components and theme**.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+During developing of this project I worked with such features: 
+- create Components
+- create and use Services and Dependency Injection (Cross component communication)
+- work with RxJS (Observables, Operators)
+- use Pipes to transform Output
+- create Forms (with Template-Driven and Reactive approach)
+- work with **Firebase** and with **AngularFire** for storing and fetching data
+- add Authentication and Route Protection
+- optimize app with splitting Modules and adding Lazy Loading 
+- uses many Angular Material components
+
+
