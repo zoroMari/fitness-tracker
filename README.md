@@ -34,5 +34,6 @@ During developing of this project I worked with such features:
 - add Authentication and Route Protection
 - optimize app with splitting Modules and adding Lazy Loading 
 - uses many Angular Material components
+- uses HTML UI layout for Angular **FlexLayout**
 
 
