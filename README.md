@@ -7,7 +7,7 @@ See demo by [this link](https://zoromari.github.io/fitness-tracker)
 
 This is an interesting project that provides a tools for tracking and logging your fitness exercises.
 
-You can start/pause and storp your selected exercise at any time and save your progress.
+You can start/pause and stop your selected exercise at any time and save your progress.
 
 You can also see all your past exercises in a convenient table with sorting and filtering, as well as check your previous progress.
 
