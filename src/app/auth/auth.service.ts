@@ -10,6 +10,7 @@ import { UIServise } from "../shared/ui.service";
 export class AuthService {
   private _isAuthenticated = false;
   public authChanged = new Subject<boolean>();
+  public activeUserEmail: string = null;
 
   constructor(
     private _router: Router,
@@ -43,6 +44,7 @@ export class AuthService {
     ).then(
       result => {
         this._uiService.loadingStateChange.next(false);
+        this.activeUserEmail = authData.email;
       })
       .catch(error => {
         this._uiService.loadingStateChange.next(false);
@@ -58,6 +60,7 @@ export class AuthService {
     ).then(
       result => {
         this._uiService.loadingStateChange.next(false);
+        this.activeUserEmail = authData.email;
       }
     ).catch(error => {
         this._uiService.loadingStateChange.next(false);
@@ -67,6 +70,8 @@ export class AuthService {
 
   public logout() {
     this._angularfireAuth.signOut();
+    this.activeUserEmail = null;
+
   }
 
   public isAuth() {

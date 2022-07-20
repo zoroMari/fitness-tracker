@@ -12,6 +12,7 @@ export class TrainingService {
     private _uiService: UIServise,
   ) {}
 
+  public currentUserMail: string;
   public exerciseChanged = new Subject<IExercise>();
   public exercisesChanged = new Subject<IExercise[]>();
   public finishedExercisesChanged = new Subject<IExercise[]>();
@@ -55,24 +56,26 @@ export class TrainingService {
     this.exerciseChanged.next({...this._runningExercise});
   }
 
-  public completeExercise() {
+  public completeExercise(userMail) {
     this._addDataToDatabase({
       ...this._runningExercise,
       date: new Date(),
       state: 'completed',
-    });
+      user: userMail,
+    }, userMail);
     this._runningExercise = null;
     this.exerciseChanged.next(null);
   }
 
-  public cancelExercise(progress: number) {
+  public cancelExercise(progress: number, userMail) {
     this._addDataToDatabase({
       ...this._runningExercise,
       duration: this._runningExercise.duration * (progress / 100),
       calories: this._runningExercise.calories * (progress / 100),
       date: new Date(),
       state: 'cancelled',
-    });
+      user: userMail,
+    }, userMail);
     this._runningExercise = null;
     this.exerciseChanged.next(null);
   }
@@ -81,8 +84,8 @@ export class TrainingService {
     return { ...this._runningExercise };
   }
 
-  public fatchFinishedExercises() {
-    this._fbSub.push(this._firestore.collection('finishedExercises').valueChanges()
+  public fatchFinishedExercises(userMail: string) {
+    this._fbSub.push((this._firestore.collection('users').doc(userMail).collection('finishedExercises')).valueChanges()
       .subscribe(
         (exercises: IExercise[]) => {
           this.finishedExercisesChanged.next(exercises);
@@ -95,8 +98,8 @@ export class TrainingService {
     this._fbSub.forEach(sub => sub.unsubscribe());
   }
 
-  private _addDataToDatabase(exercise: IExercise) {
-    this._firestore.collection('finishedExercises').add(exercise);
+  private _addDataToDatabase(exercise: IExercise, userMail: string) {
+    this._firestore.collection('users').doc(userMail).collection('finishedExercises').add(exercise);
   }
 
 }
