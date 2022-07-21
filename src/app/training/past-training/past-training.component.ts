@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { IExercise } from '../exercise.model';
 import { TrainingService } from '../training.service';
 
@@ -16,19 +17,25 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private _sub: Subscription;
+  public currentUserMail: string;
 
-  constructor(private _trainingService: TrainingService) { }
+  constructor(
+    private _trainingService: TrainingService,
+    private _authService: AuthService,
+  ) { }
 
   displayedColumns: string[] = ['date', 'name', 'duration', 'calories', 'state'];
   dataSource = new MatTableDataSource<IExercise>();
 
   ngOnInit(): void {
+    this.currentUserMail = this._authService.activeUserEmail;
+
     this._sub = this._trainingService.finishedExercisesChanged.subscribe(
       (finishedExercises: IExercise[]) => {
         this.dataSource.data = finishedExercises;
       }
     )
-    this._trainingService.fatchFinishedExercises();
+    this._trainingService.fatchFinishedExercises(this.currentUserMail);
   }
 
   ngAfterViewInit(): void {

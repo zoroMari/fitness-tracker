@@ -5,4 +5,5 @@ export interface IExercise {
   calories: number;
   date?: Date;
   state?: 'completed' | 'cancelled' | null;
+  user?: string;
 }
