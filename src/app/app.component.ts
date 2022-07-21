@@ -13,5 +13,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this._authService.initAuthListener();
+
+    this._authService.autoLogin();
   }
 }
