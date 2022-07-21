@@ -45,6 +45,7 @@ export class AuthService {
       result => {
         this._uiService.loadingStateChange.next(false);
         this.activeUserEmail = authData.email;
+        localStorage.setItem('activeUserMail', authData.email);
       })
       .catch(error => {
         this._uiService.loadingStateChange.next(false);
@@ -61,6 +62,7 @@ export class AuthService {
       result => {
         this._uiService.loadingStateChange.next(false);
         this.activeUserEmail = authData.email;
+        localStorage.setItem('activeUserMail', authData.email);
       }
     ).catch(error => {
         this._uiService.loadingStateChange.next(false);
@@ -71,11 +73,14 @@ export class AuthService {
   public logout() {
     this._angularfireAuth.signOut();
     this.activeUserEmail = null;
-
+    localStorage.removeItem('activeUserMail');
   }
 
   public isAuth() {
     return this._isAuthenticated;
   }
 
+  public autoLogin() {
+    this.activeUserEmail = localStorage.getItem('activeUserMail');
+  }
 }
