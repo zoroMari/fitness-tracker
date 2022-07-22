@@ -35,6 +35,8 @@ export class SignupComponent implements OnInit, OnDestroy {
         password: form.value.password,
       }
     );
+
+    this._authService.initAuthListener();
   }
 
   ngOnDestroy(): void {

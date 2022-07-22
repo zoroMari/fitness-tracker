@@ -34,7 +34,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this._authService.login({
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
-    })
+    });
+
+    this._authService.initAuthListener();
+
   }
 
   ngOnDestroy(): void {
