@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 import { IAuthData } from "./auth-data.model";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { TrainingService } from "../training/training.service";
@@ -74,6 +74,8 @@ export class AuthService {
     this._angularfireAuth.signOut();
     this.activeUserEmail = null;
     localStorage.removeItem('activeUserMail');
+    this.authChanged.next(false);
+    this._router.navigate(['/home']);
   }
 
   public isAuth() {
@@ -81,6 +83,10 @@ export class AuthService {
   }
 
   public autoLogin() {
-    this.activeUserEmail = localStorage.getItem('activeUserMail');
+    if (localStorage.getItem('activeUserMail')) {
+      this._isAuthenticated = true;
+      this.authChanged.next(true);
+      this.activeUserEmail = localStorage.getItem('activeUserMail');
+    }
   }
 }

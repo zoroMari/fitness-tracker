@@ -7,13 +7,12 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  openSideNav = false;
+  public openSideNav = false;
 
   constructor(private _authService: AuthService) {}
 
   ngOnInit(): void {
     this._authService.initAuthListener();
-
     this._authService.autoLogin();
   }
 }

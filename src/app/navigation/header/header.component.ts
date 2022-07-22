@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { UIServise } from 'src/app/shared/ui.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isLogin = false;
   private _authSub: Subscription;
 
-  constructor(private _authService: AuthService) { }
+  constructor(
+    private _authService: AuthService,
+    private _uiService: UIServise,
+  ) { }
 
   ngOnInit(): void {
    this._authSub = this._authService.authChanged.subscribe(

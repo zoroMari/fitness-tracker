@@ -39,8 +39,6 @@ export class CurrentTrainingComponent implements OnInit {
   }
 
   handleStop() {
-    console.log('this.currentUserMail >>>', this.currentUserMail);
-
     clearInterval(this.timer);
     const dialogRef = this._dialog.open(StopTrainingComponent, {
       data: {
